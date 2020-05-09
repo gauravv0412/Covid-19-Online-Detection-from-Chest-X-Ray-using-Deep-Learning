@@ -25,18 +25,18 @@ def predict(img_name):
     img = np.reshape(img, (1,224,224,3))
     print('predicting, on img:', img.shape)
     prob = model.predict(img)[0][0]
+    prob = "{0:.2f}".format(prob) 
+    prob = float(prob)
     if prob > 0.5 : 
         pred = 1
     else:
         pred = 0
-    
     print(str(img_name), prob)
-    print('going to return')
-    prob = "{0:.2f}".format(prob)   
+    print('going to return')  
     if pred == 1:
-        return "Positive"
+        return "Covid-19 Positive", prob
     else :
-        return "Negative"
+        return "Covid-19 Negative", prob
 
 def index(request):
     print('inside index')
@@ -53,13 +53,14 @@ def index(request):
             print('saved:',name)
             # form.save() 
             print('calling predict')
-            result = predict(name)
+            result, prob = predict(name)
+            prob = float(prob)*100
             error = False
-            return render(request, 'main/index.html', {'form':form, 'error':error, 'result':result})
+            return render(request, 'main/index.html', {'form':form, 'error':error, 'result':result, 'prob':prob})
         else:
             error = True
             message = "Unsupported Format"
-            return render(request, 'main/index.html', {'form':form, 'error':error, 'message':message, 'result':None})
+            return render(request, 'main/index.html', {'form':form, 'error':error, 'message':message, 'result':None, 'prob':None})
 
     else:
         form = XrayForm()

@@ -48,13 +48,58 @@
                         {% elif error is True %}
                         <p class="red-text">**{{message}}**</p>
                         {% else %}
-                        <p class="white-text">Prediction: {{result}}</p>
-                        {% endif %}
+                        <p class="white-text">Prediction: </p>
+                        <p class="red-text">{{result}}</p>
+                        <a class="waves-effect waves-light btn modal-trigger blue lighten-2" href="#modal1">
+                            Show Result</a>
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Result</h4>
+                                <div class="container"></div>
+                                <div class="row">
+                                    <p class="red-text">Prediction: {{result}}</p>
+                                </div>
+                                <div class="row">
+                                    <p>Probability that person might be infected: {{prob}}%</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col s3">
+                                        <p class="left-align">Healthy</p>
+                                    </div>
+                                    <div class="col s6"></div>
+                                    <div class="col s3">
+                                        <p class="right-align">Infected</p>
+                                    </div>
+                                </div>
+                                {% if prob > 50 %}
+                                <div class="progress">
+                                    <div class="determinate red " style="width: {{prob}}%"></div>
+                                </div>
+                                {% else %}
+                                <div class="progress">
+                                    <div class="determinate blue lighten-2" style="width: {{prob}}%"></div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+                        </div>
                     </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var Modalelem = document.querySelector('.modal');
+                            var instance = M.Modal.init(Modalelem);
+                            instance.open();
+                        });
+
+                    </script>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -62,15 +107,16 @@
     <div class="row">
         <div class="col l6 s12">
             <h5 class="grey-text text-lighten-4 font-serif">About the Model</h5>
-            <p class="grey-text text-lighten-4 font-serif"> It is a Deep Neural Network model which consists of 2D-Convolution and Dense Layers
+            <p class="grey-text text-lighten-4 font-serif"> It is a Deep Neural Network model which consists of
+                2D-Convolution and Dense Layers
                 with over 1 million trained parameters and accuracy of 97.7%.
-                It is built on <a class = "red-text text-lighten-4 font-serif" href="http://keras.io">Keras</a> 
-                and <a class = "red-text text-lighten-4 font-serif" href="http://tensorflow.org">Tensorflow</a> 
+                It is built on <a class="red-text text-lighten-4 font-serif" href="http://keras.io">Keras</a>
+                and <a class="red-text text-lighten-4 font-serif" href="http://tensorflow.org">Tensorflow</a>
                 as backend.
             </p>
         </div>
         <div class="col l6 s4">
-            <img class = "responsive-img" src="{% static 'main/images/keras.jpg' %}" alt="">
+            <img class="responsive-img" src="{% static 'main/images/keras.jpg' %}" alt="">
         </div>
     </div>
 </div>
@@ -83,19 +129,20 @@
     <div class="row">
         <div class="col l8 s12">
             <h5 class="grey-text text-lighten-4 font-serif">About Covid-19</h5>
-            <p class="grey-text text-lighten-4 font-serif"> Coronavirus disease (COVID-19) is an 
-                infectious disease caused by a newly discovered coronavirus.The virus that 
-                causes COVID-19 is mainly transmitted through droplets generated when an 
-                infected person coughs, sneezes, or exhales. These droplets are too heavy 
+            <p class="grey-text text-lighten-4 font-serif"> Coronavirus disease (COVID-19) is an
+                infectious disease caused by a newly discovered coronavirus.The virus that
+                causes COVID-19 is mainly transmitted through droplets generated when an
+                infected person coughs, sneezes, or exhales. These droplets are too heavy
                 to hang in the air, and quickly fall on floors or surfaces.
-                You can be infected by breathing in the virus if you are within close 
-                proximity of someone who has COVID-19, or by touching a contaminated 
-                surface and then your eyes, nose or mouth. 
-                <a class = "red-text text-lighten-4 font-serif" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">More info...</a>
+                You can be infected by breathing in the virus if you are within close
+                proximity of someone who has COVID-19, or by touching a contaminated
+                surface and then your eyes, nose or mouth.
+                <a class="red-text text-lighten-4 font-serif"
+                    href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">More info...</a>
             </p>
         </div>
         <div class="col l4 s4">
-            <img class = "responsive-img" src="{% static 'main/images/giphy11.gif' %}" alt="">
+            <img class="responsive-img" src="{% static 'main/images/giphy11.gif' %}" alt="">
         </div>
     </div>
 </div>
@@ -109,16 +156,18 @@
     <div class="row">
         <div class="col l9 s12">
             <h5 class="grey-text text-lighten-4 font-serif">About Dataset</h5>
-            <p class="grey-text text-lighten-4 font-serif"> The dataset for Model was collected 
-                and compiled from famous public data source platforms: 
-                <a class = "red-text text-lighten-4 font-serif" href="https://github.com/ieee8023/covid-chestxray-dataset/tree/master/images">Github</a> 
-                and <a class = "red-text text-lighten-4 font-serif" href="https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia">kaggle</a>. 
-                A descent distortion and augmentation was applied on images before training. This was done 
+            <p class="grey-text text-lighten-4 font-serif"> The dataset for Model was collected
+                and compiled from famous public data source platforms:
+                <a class="red-text text-lighten-4 font-serif"
+                    href="https://github.com/ieee8023/covid-chestxray-dataset/tree/master/images">Github</a>
+                and <a class="red-text text-lighten-4 font-serif"
+                    href="https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia">kaggle</a>.
+                A descent distortion and augmentation was applied on images before training. This was done
                 to prevent overfitting as data was quite small and chances of overfitting were very high.
             </p>
         </div>
         <div class="col l3 s4">
-            <img class = "responsive-img" src="{% static 'main/images/xray1.jpg' %}" alt="">
+            <img class="responsive-img" src="{% static 'main/images/xray1.jpg' %}" alt="">
         </div>
     </div>
 </div>
