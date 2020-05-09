@@ -9,4 +9,5 @@ urlpatterns = [
 ]
 
 if settings.DEBUG: 
+    print('settings.debug is also true')
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

@@ -12,9 +12,11 @@ import os
 # Create your views here.
 def predict(img_name):
     print('inside predict')
-    img_path = '/app/'+ '/media/images/' + str(img_name)
+    img_path = '/app/'+ '/media/images/' + img_name
+    # img_path = settings.BASE_DIR+ '/media/images/' + img_name
     img = cv2.imread(img_path)
     model_path = '/app/' + '/static/main/ml/model.h5'
+    # model_path = settings.BASE_DIR + '/static/main/ml/model.h5'
     print('loading model')
     model = load_model(model_path)
     print('model loaded')
@@ -29,7 +31,7 @@ def predict(img_name):
         pred = 0
     
     print(str(img_name), prob)
-    prinnt('going to return')
+    print('going to return')
     prob = "{0:.2f}".format(prob)   
     if pred == 1:
         return "Positive"
@@ -42,19 +44,16 @@ def index(request):
     if request.method == 'POST': 
         form = XrayForm(request.POST, request.FILES) 
         print('POST request recieved.')
-        print('Current Directory:')
-        os.system('pwd')
         if form.is_valid(): 
-            name = str(request.FILES['scan'])
-            print(name)
-            names = [x.split('/')[-1] for x in  glob.glob('/app/' + '/media/images/*')]
-            print(names)
-            if name in names or len(names) > 20:
-                os.system('rm -rf ' + '/app/' + '/media/images/')
-            print('saving form')
-            form.save() 
+            print('saving img')
+            with open('media/images/xray.jpg', 'wb+') as destination:
+                for chunk in request.FILES['scan'].chunks():
+                    destination.write(chunk)
+            name = 'xray.jpg'
+            print('saved:',name)
+            # form.save() 
             print('calling predict')
-            result = predict(request.FILES['scan'])
+            result = predict(name)
             error = False
             return render(request, 'main/index.html', {'form':form, 'error':error, 'result':result})
         else:
