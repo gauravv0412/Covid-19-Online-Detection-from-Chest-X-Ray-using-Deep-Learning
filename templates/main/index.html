@@ -1,0 +1,126 @@
+{% extends "main/layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="parallax-container">
+    <div class="parallax"><img src="{% static 'main/images/robot-2.jpg' %}"></div>
+    <div class="container">
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row ">
+            <div class="col s12 m3"></div>
+            <div class="col s12 m6">
+                <div class="card transparent">
+                    <div class="card-content">
+                        <form method="POST" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="file-field input-field">
+                                <div class="btn waves-effect waves-light blue lighten-2"><i
+                                        class="material-icons">file_upload</i>
+                                    <input required type="file" name="scan" id="id_scan">
+                                </div>
+
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate transparent" type="text">
+                                </div>
+
+                                <button class="btn waves-effect waves-light blue lighten-2 right" type="submit"
+                                    name="action">Predict
+                                    <i class="material-icons right">arrow_forward</i>
+                                </button>
+                            </div>
+                        </form>
+                        {% if error is None %}
+                        <p class="white-text">Upload an X-Ray scan</p>
+                        {% elif error is True %}
+                        <p class="red-text">**{{message}}**</p>
+                        {% else %}
+                        <p class="white-text">Prediction: {{result}}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container blue lighten-2">
+    <div class="row">
+        <div class="col l6 s12">
+            <h5 class="grey-text text-lighten-4 font-serif">About the Model</h5>
+            <p class="grey-text text-lighten-4 font-serif"> It is a Deep Neural Network model which consists of 2D-Convolution and Dense Layers
+                with over 1 million trained parameters.
+                It is built on <a class = "red-text text-lighten-4 font-serif" href="http://keras.io">Keras</a> 
+                and <a class = "red-text text-lighten-4 font-serif" href="http://tensorflow.org">Tensorflow</a> 
+                as backend.
+            </p>
+        </div>
+        <div class="col l6 s4">
+            <img class = "responsive-img" src="{% static 'main/images/keras.jpg' %}" alt="">
+        </div>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img class="responsive-img" src="{% static 'main/images/coronavirus.jpg' %}"></div>
+</div>
+
+<div class="container blue lighten-2">
+    <div class="row"></div>
+    <div class="row">
+        <div class="col l8 s12">
+            <h5 class="grey-text text-lighten-4 font-serif">About Covid-19</h5>
+            <p class="grey-text text-lighten-4 font-serif"> Coronavirus disease (COVID-19) is an 
+                infectious disease caused by a newly discovered coronavirus.The virus that 
+                causes COVID-19 is mainly transmitted through droplets generated when an 
+                infected person coughs, sneezes, or exhales. These droplets are too heavy 
+                to hang in the air, and quickly fall on floors or surfaces.
+                You can be infected by breathing in the virus if you are within close 
+                proximity of someone who has COVID-19, or by touching a contaminated 
+                surface and then your eyes, nose or mouth. 
+                <a class = "red-text text-lighten-4 font-serif" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">More info...</a>
+            </p>
+        </div>
+        <div class="col l4 s4">
+            <img class = "responsive-img" src="{% static 'main/images/giphy11.gif' %}" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container">
+    <div class="parallax"><img class="responsive-img" src="{% static 'main/images/chest-xray.jpg' %}"></div>
+</div>
+
+<div class="container blue lighten-2">
+    <div class="row"></div>
+    <div class="row">
+        <div class="col l9 s12">
+            <h5 class="grey-text text-lighten-4 font-serif">About Dataset</h5>
+            <p class="grey-text text-lighten-4 font-serif"> The dataset for Model was collected 
+                and compiled from famous public data source platforms: 
+                <a class = "red-text text-lighten-4 font-serif" href="https://github.com/ieee8023/covid-chestxray-dataset/tree/master/images">Github</a> 
+                and <a class = "red-text text-lighten-4 font-serif" href="https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia">kaggle</a>. 
+                A descent distortion and augmentation was applied on images before training. This was done 
+                to prevent overfitting as data was quite small and chances of overfitting were very high.
+            </p>
+        </div>
+        <div class="col l3 s4">
+            <img class = "responsive-img" src="{% static 'main/images/xray1.jpg' %}" alt="">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
