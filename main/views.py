@@ -11,13 +11,17 @@ import os
 
 # Create your views here.
 def predict(img_name):
+    print('inside predict')
     img_path = settings.BASE_DIR + '/media/images/' + str(img_name)
     img = cv2.imread(img_path)
     model_path = settings.BASE_DIR + '/static/main/ml/model.h5'
+    print('loading model')
     model = load_model(model_path)
+    print('model loaded')
     img = cv2.resize(img, (224,224), interpolation = cv2.INTER_AREA)
     img = img/255
     img = np.reshape(img, (1,224,224,3))
+    print('predicting, on img:', img.shape)
     prob = model.predict(img)[0][0]
     if prob > 0.5 : 
         pred = 1
@@ -25,8 +29,8 @@ def predict(img_name):
         pred = 0
     
     print(str(img_name), prob)
-
-    prob = "{0:.2f}".format(prob)
+    prinnt('going to return')
+    prob = "{0:.2f}".format(prob)   
     if pred == 1:
         return "Positive"
     else :
@@ -43,6 +47,7 @@ def index(request):
             if name in names or len(names) > 20:
                 os.system('rm -rf ' + settings.BASE_DIR + '/media/images/')
             form.save() 
+            print('calling predict')
             result = predict(request.FILES['scan'])
             error = False
             return render(request, 'main/index.html', {'form':form, 'error':error, 'result':result})
