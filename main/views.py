@@ -4,7 +4,7 @@ from .forms import *
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
-from django.conf import settings 
+# from django.conf import settings 
 from tensorflow.keras.models import *
 import glob
 import os
@@ -12,9 +12,9 @@ import os
 # Create your views here.
 def predict(img_name):
     print('inside predict')
-    img_path = settings.BASE_DIR + '/media/images/' + str(img_name)
+    img_path = '/app/'+ '/media/images/' + str(img_name)
     img = cv2.imread(img_path)
-    model_path = settings.BASE_DIR + '/static/main/ml/model.h5'
+    model_path = '/app/' + '/static/main/ml/model.h5'
     print('loading model')
     model = load_model(model_path)
     print('model loaded')
@@ -44,9 +44,9 @@ def index(request):
         print('POST request recieved.')
         if form.is_valid(): 
             name = str(request.FILES['scan'])
-            names = [x.split('/')[-1] for x in  glob.glob(settings.BASE_DIR + '/media/images/*')]
+            names = [x.split('/')[-1] for x in  glob.glob('/app/' + '/media/images/*')]
             if name in names or len(names) > 20:
-                os.system('rm -rf ' + settings.BASE_DIR + '/media/images/')
+                os.system('rm -rf ' + '/app/' + '/media/images/')
             form.save() 
             print('calling predict')
             result = predict(request.FILES['scan'])
