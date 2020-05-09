@@ -37,10 +37,11 @@ def predict(img_name):
         return "Negative"
 
 def index(request):
+    print('inside index')
     error = None
     if request.method == 'POST': 
         form = XrayForm(request.POST, request.FILES) 
-  
+        print('POST request recieved.')
         if form.is_valid(): 
             name = str(request.FILES['scan'])
             names = [x.split('/')[-1] for x in  glob.glob(settings.BASE_DIR + '/media/images/*')]
