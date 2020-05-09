@@ -42,11 +42,16 @@ def index(request):
     if request.method == 'POST': 
         form = XrayForm(request.POST, request.FILES) 
         print('POST request recieved.')
+        print('Current Directory:')
+        os.system('pwd')
         if form.is_valid(): 
             name = str(request.FILES['scan'])
+            print(name)
             names = [x.split('/')[-1] for x in  glob.glob('/app/' + '/media/images/*')]
+            print(names)
             if name in names or len(names) > 20:
                 os.system('rm -rf ' + '/app/' + '/media/images/')
+            print('saving form')
             form.save() 
             print('calling predict')
             result = predict(request.FILES['scan'])
