@@ -26,7 +26,7 @@ def predict(img_name):
     print('predicting, on img:', img.shape)
     prob = model.predict(img)[0][0]
     prob = "{0:.2f}".format(prob) 
-    prob = 1-float(prob)
+    prob = float(prob)
     if prob > 0.5 : 
         pred = 1
     else:

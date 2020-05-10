@@ -59,8 +59,9 @@
                                 <div class="row">
                                     <p class="red-text">Prediction: {{result}}</p>
                                 </div>
+                                {% if prob > 50 %}
                                 <div class="row">
-                                    <p>Probability that person might be infected: {{prob}}%</p>
+                                    <p>Probability that person is infected: {{prob}}%</p>
                                 </div>
                                 <div class="row">
                                     <div class="col s3">
@@ -71,11 +72,22 @@
                                         <p class="right-align">Infected</p>
                                     </div>
                                 </div>
-                                {% if prob > 50 %}
                                 <div class="progress">
                                     <div class="determinate red " style="width: {{prob}}%"></div>
                                 </div>
                                 {% else %}
+                                <div class="row">
+                                    <p>Probability that person is not infected: {{100 - prob}}%</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col s3">
+                                        <p class="left-align">Healthy</p>
+                                    </div>
+                                    <div class="col s6"></div>
+                                    <div class="col s3">
+                                        <p class="right-align">Infected</p>
+                                    </div>
+                                </div>
                                 <div class="progress">
                                     <div class="determinate blue lighten-2" style="width: {{prob}}%"></div>
                                 </div>
