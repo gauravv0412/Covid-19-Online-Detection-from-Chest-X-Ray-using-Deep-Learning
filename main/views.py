@@ -16,7 +16,7 @@ def predict(img_name):
     # img_path = settings.BASE_DIR+ '/media/images/' + img_name
     img = cv2.imread(img_path)
     model_path = '/app/' + '/static/main/ml/model.h5'
-    # model_path = settings.BASE_DIR + '/static/main/ml/model.h5'
+    # model_path = settings.BASE_DIR + '/static/main/ml/model2.h5'
     print('loading model')
     model = load_model(model_path)
     print('model loaded')
@@ -26,7 +26,7 @@ def predict(img_name):
     print('predicting, on img:', img.shape)
     prob = model.predict(img)[0][0]
     prob = "{0:.2f}".format(prob) 
-    prob = float(prob)
+    prob = 1-float(prob)
     if prob > 0.5 : 
         pred = 1
     else:
