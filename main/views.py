@@ -15,7 +15,7 @@ def predict(img_name):
     img_path = '/app/'+ '/media/images/' + img_name
     # img_path = settings.BASE_DIR+ '/media/images/' + img_name
     img = cv2.imread(img_path)
-    model_path = '/app/' + '/static/main/ml/model.h5'
+    model_path = '/app/' + '/static/main/ml/model2.h5'
     # model_path = settings.BASE_DIR + '/static/main/ml/model2.h5'
     print('loading model')
     model = load_model(model_path)
