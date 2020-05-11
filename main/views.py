@@ -16,7 +16,7 @@ def predict(img_name):
     # img_path = settings.BASE_DIR+ '/media/images/' + img_name
     img = cv2.imread(img_path)
     model_path = '/app/' + '/static/main/ml/model.h5'
-    # model_path = settings.BASE_DIR + '/static/main/ml/model2.h5'
+    # model_path = settings.BASE_DIR + '/static/main/ml/model.h5'
     print('loading model')
     model = load_model(model_path)
     print('model loaded')
@@ -56,7 +56,7 @@ def index(request):
             result, prob = predict(name)
             prob = float(prob)*100
             error = False
-            return render(request, 'main/index.html', {'form':form, 'error':error, 'result':result, 'prob':prob})
+            return render(request, 'main/index.html', {'form':form, 'error':error, 'result':result, 'prob':prob, 'revprob':100 - prob})
         else:
             error = True
             message = "Unsupported Format"
