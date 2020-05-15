@@ -3,9 +3,9 @@ This project is based on detecting covid-19 infection from Chest X-ray(front vie
 
 Site Link: http://covid19-online-detection.herokuapp.com
 
-It is a Deep Neural Network model which consists of 2D-Convolution and Dense Layers with over 1 million trained parameters and accuracy of 97.7%. 
+It is a **Deep Learning Neural Network model** which consists of 2D-Convolution and Dense Layers with over 1 million trained parameters and accuracy of 97.7%. 
 
-AI Model is built on Keras and Tensorflow as backend. Website is built using Django framework for backend and Materialise for frontend.
+AI Model is built on **Keras** and **Tensorflow** as backend. Website is built using **Django** framework for backend and Materialise for frontend.
 
 ## Installation Documentation
 
