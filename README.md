@@ -49,7 +49,7 @@ Step - 3: Launch Django app by:
 ## Demo of Application
 
 Upload the X-Ray scan and click on "Predict" to make prediction.
-You can use sample images provided in the [Sample_Images](/SampleImages/) directory.
+You can use sample images provided in the [Sample_Images](https://github.com/gauravv0412/Covid-19-Online-Detection-from-Chest-X-Ray-using-Deep-Learning/tree/master/Sample%20Images) directory.
 
 ![Alt text](/Screenshots/9.png)
 
