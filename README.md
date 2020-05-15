@@ -48,8 +48,8 @@ Step - 3: Launch Django app by:
 
 ## Demo of Application
 
-Upload the X-Ray scan and click on "Predict" to generate result that whether the patient is detected covid-19 positive or not.
-You can also use sample image provided in the 'Sample_Images' directory.
+Upload the X-Ray scan and click on "Predict" to make prediction.
+You can use sample images provided in the [Sample_Images](/SampleImages/) directory.
 
 ![Alt text](/Screenshots/9.png)
 
