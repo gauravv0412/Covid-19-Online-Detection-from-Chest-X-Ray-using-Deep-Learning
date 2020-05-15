@@ -26,11 +26,11 @@ Step - 2: Create virtual environment and install all the required libraries from
     sudo apt-get install python3-pip
 
 ![Alt text](/Screenshots/2.png)
-![Alt text](/Screenshots/3.png)
 
     pip3 install virtualenv
     virtualenv env
     
+![Alt text](/Screenshots/3.png)
 ![Alt text](/Screenshots/4.png)
     
     source env/bin/activate
